@@ -34,6 +34,13 @@ stream
     })
   )
   .pipe(
+    new Transform({
+      transform(chunk, enc, cb) {
+        cb(null, chunk.toString().toUpperCase());
+      }
+    })
+  )
+  .pipe(
     new Writable({
         write(chunk, enc, cb) {
           console.log('já chegou', chunk.toString());
